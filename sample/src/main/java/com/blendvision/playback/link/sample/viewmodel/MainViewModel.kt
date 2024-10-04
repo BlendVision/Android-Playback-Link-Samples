@@ -2,7 +2,7 @@ package com.blendvision.playback.link.sample.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.blendvision.playback.link.common.presentation.entity.BVPlaybackLinkError
+import com.blendvision.playback.link.common.presentation.entity.BVPlaybackLinkState
 import com.blendvision.playback.link.core.presentation.BVPlaybackLink
 import com.blendvision.playback.link.sample.adapter.SessionItem
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -59,19 +59,25 @@ class MainViewModel(private val bvPlaybackLinker: BVPlaybackLink) : ViewModel() 
 
     private fun observeErrorEvents() {
         viewModelScope.launch {
-            bvPlaybackLinker.errorEvent.collect { error ->
-                val message = when (error) {
-                    is BVPlaybackLinkError.ClientError -> error.message
-                    is BVPlaybackLinkError.UnknownError -> error.message
-                    else -> error::class.java.simpleName
+            bvPlaybackLinker.stateEvent.collect { state ->
+                val message = when (state) {
+                    is BVPlaybackLinkState.GetResourceInfoSuccess -> GET_RESOURCE_INFO_SUCCESS
+                    is BVPlaybackLinkState.StartPlaybackSessionSuccess -> START_PLAYBACK_SESSION_SUCCESS
+                    is BVPlaybackLinkState.StartHeartbeatSuccess -> START_HEARTBEAT_SUCCESS
+                    is BVPlaybackLinkState.EndPlaybackSessionSuccess -> END_PLAYBACK_SESSION_SUCCESS
+                    is BVPlaybackLinkState.Failure -> state.bvPlaybackLinkError.message
                 }
-                addSessionItem(message.toString())
+                addSessionItem(message)
             }
         }
     }
 
     companion object{
         private const val PRE_FIX = "Bearer "
+        private const val GET_RESOURCE_INFO_SUCCESS = "Get resource info success"
+        private const val START_PLAYBACK_SESSION_SUCCESS = "Start playback session success"
+        private const val START_HEARTBEAT_SUCCESS = "Start heartbeat success"
+        private const val END_PLAYBACK_SESSION_SUCCESS = "End playback session success"
     }
 
 }
