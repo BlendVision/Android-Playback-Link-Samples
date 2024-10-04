@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">BVPlaybackLinkSample</string>
+
+    <string name="input_playback_token">input playback token</string>
+
+    <string name="update_playback_token">update token</string>
+    <string name="reset_playback_token">reset token</string>
+
+    <string name="get_resource_info">get resource info</string>
+
+    <string name="start_session">start session</string>
+    <string name="end_session">end session</string>
+    <string name="release_session">release session</string>
+
+</resources>

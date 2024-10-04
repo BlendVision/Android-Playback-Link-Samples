@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Primary color (light theme) -->
+    <color name="md_theme_primary">#A68D6D</color> <!-- 柔和的棕色 -->
+    <color name="md_theme_onPrimary">#FFFFFF</color> <!-- 白色文字在主色調上 -->
+    <color name="md_theme_primaryContainer">#D7BFA8</color> <!-- 更淺的木質色系作為容器背景 -->
+    <color name="md_theme_onPrimaryContainer">#4B3523</color> <!-- 深棕色作為容器文字色彩 -->
+
+    <!-- Secondary color (light theme) -->
+    <color name="md_theme_secondary">#BCAAA4</color> <!-- 米色調 -->
+    <color name="md_theme_onSecondary">#3E2723</color> <!-- 深咖啡色文字 -->
+    <color name="md_theme_secondaryContainer">#FFF1E0</color> <!-- 柔和的淺米色容器 -->
+    <color name="md_theme_onSecondaryContainer">#5D4037</color> <!-- 中等咖啡色文字 -->
+
+    <!-- Tertiary color (light theme) -->
+    <color name="md_theme_tertiary">#8D6E63</color> <!-- 中性棕灰色 -->
+    <color name="md_theme_onTertiary">#FFFFFF</color>
+    <color name="md_theme_tertiaryContainer">#D7CCC8</color> <!-- 柔和米灰色容器 -->
+    <color name="md_theme_onTertiaryContainer">#3E2723</color>
+
+    <!-- Error color (light theme) -->
+    <color name="md_theme_error">#B00020</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_errorContainer">#FFCCBC</color>
+    <color name="md_theme_onErrorContainer">#790000</color>
+
+    <!-- Background and Surface colors (light theme) -->
+    <color name="md_theme_background">#F5F5F5</color> <!-- 柔和的灰白色背景 -->
+    <color name="md_theme_onBackground">#3E2723</color> <!-- 深咖啡色文字 -->
+    <color name="md_theme_surface">#FFFFFF</color>
+    <color name="md_theme_onSurface">#3E2723</color> <!-- 深咖啡色文字 -->
+    <color name="md_theme_surfaceVariant">#D7CCC8</color> <!-- 米灰色表面 -->
+    <color name="md_theme_onSurfaceVariant">#494949</color> <!-- 深灰色文字 -->
+
+    <!-- Other colors -->
+    <color name="md_theme_outline">#8D6E63</color> <!-- 棕灰色邊界 -->
+    <color name="md_theme_scrim">#66000000</color> <!-- 半透明黑色背景遮罩 -->
+    <color name="md_theme_shadow">#66000000</color> <!-- 半透明黑色陰影 -->
+
+    <!-- Component colors (light theme) -->
+    <color name="btn_bg_enabled">#A68D6D</color> <!-- 柔和的棕色用於啟用的按鈕背景 -->
+    <color name="btn_bg_disabled">#D7BFA8</color> <!-- 更淺的棕色系用於禁用的按鈕背景 -->
+    <color name="switch_track_active_color">#D7CCC8</color> <!-- 柔和米灰色用於活動開關軌道 -->
+    <color name="switch_track_inactive_color">#E6D7D2</color> <!-- 更淺的灰色用於非活動開關軌道 -->
+    <color name="switch_thumb_active_color">#A68D6D</color> <!-- 中性棕色用於活動開關拇指 -->
+    <color name="switch_thumb_inactive_color">#D7BFA8</color> <!-- 更淺的棕色用於非活動開關拇指 -->
+
+</resources>
