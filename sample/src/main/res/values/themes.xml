@@ -19,7 +19,7 @@
         <item name="android:textColor">@color/md_theme_onSurface</item>
         <item name="android:padding">16dp</item>
         <item name="android:singleLine">true</item>
-<!--        <item name="endIconMode">clear_text</item>-->
+        <item name="endIconMode">clear_text</item>
         <item name="endIconTint">@color/md_theme_onSurfaceVariant</item>
         <item name="helperTextTextColor">@color/md_theme_onSurfaceVariant</item>
         <item name="errorTextColor">@color/md_theme_error</item>

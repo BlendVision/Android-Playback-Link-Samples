@@ -1,4 +1,4 @@
-package com.blendvision.playback.link.sample.adapter
+package com.blendvision.playback.link.sample.common.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 

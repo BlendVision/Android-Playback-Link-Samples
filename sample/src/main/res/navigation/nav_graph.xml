@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.blendvision.playback.link.sample.main.view.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_playbackLinkFragment"
+            app:destination="@id/playbackLinkFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_playbackLinkWithPlayerFragment"
+            app:destination="@id/playbackLinkWithPlayerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/playbackLinkFragment"
+        android:name="com.blendvision.playback.link.sample.playback_link.view.PlaybackLinkFragment"
+        android:label="fragment_player_settings"
+        tools:layout="@layout/fragment_playback_link"/>
+
+    <fragment
+        android:id="@+id/playbackLinkWithPlayerFragment"
+        android:name="com.blendvision.playback.link.sample.playback_link_with_player.view.PlaybackLinkWithPlayerFragment"
+        android:label="fragment_load_json"
+        tools:layout="@layout/fragment_playback_link_with_player"/>
+
+</navigation>

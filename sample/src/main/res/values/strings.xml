@@ -1,15 +1,29 @@
 <resources>
     <string name="app_name">BVPlaybackLinkSample</string>
 
+    <string name="input_license_key">input license key</string>
     <string name="input_playback_token">input playback token</string>
+    <string name="input_mpd_url">input mpd url</string>
 
     <string name="update_playback_token">update token</string>
     <string name="reset_playback_token">reset token</string>
 
     <string name="get_resource_info">get resource info</string>
 
+    <string name="get_current_playback_token">get current playback token</string>
     <string name="start_session">start session</string>
     <string name="end_session">end session</string>
     <string name="release_session">release session</string>
+
+    <string name="go_playback_link_fragment">Go to Playback Link Fragment</string>
+    <string name="go_playback_link_with_player_fragment">Go to Playback Link With Player Fragment</string>
+
+    <string name="start_playback_link">Playback Link</string>
+    <string name="welcome_to_playback_link">Welcome to Playback Link</string>
+
+    <string name="init_player">init player</string>
+    <string name="load_player">load player</string>
+    <string name="start_player">Start Player</string>
+    <string name="stop_player">Stop Player</string>
 
 </resources>
