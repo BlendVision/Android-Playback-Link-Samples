@@ -1,5 +1,6 @@
 plugins {
     id("com.blendvision.playback.link.application.config")
+    alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
@@ -8,7 +9,11 @@ android {
 
 dependencies {
 
-    implementation(libs.bvplaybacklink)
+    implementation(libs.bv.playbacklink)
+    implementation(libs.bundles.bv.player)
+
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
 
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.coroutines)
@@ -17,6 +22,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
+    implementation(libs.androidx.fragment)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

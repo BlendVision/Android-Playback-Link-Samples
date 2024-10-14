@@ -4,121 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity" >
+    tools:context=".main.view.MainActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/playbackTokenTextInputView"
-        style="@style/CustomTextInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/updatePlaybackTokenButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/playbackTokenInputEditText"
-            style="@style/CustomTextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/updatePlaybackTokenButton"
-        style="@style/CustomButton"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@string/update_playback_token"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/resetPlaybackTokenButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/playbackTokenTextInputView" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/resetPlaybackTokenButton"
-        style="@style/CustomButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/reset_playback_token"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/playbackTokenTextInputView"
-        app:layout_constraintEnd_toEndOf="@+id/updatePlaybackTokenButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/updatePlaybackTokenButton"
-        app:layout_constraintTop_toBottomOf="@+id/updatePlaybackTokenButton" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/endSessionButton"
-        style="@style/CustomButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/end_session"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/startSessionButton"
-        app:layout_constraintEnd_toStartOf="@+id/getResourceInfoButton"
-        app:layout_constraintStart_toEndOf="@+id/startSessionButton"
-        app:layout_constraintTop_toTopOf="@+id/startSessionButton" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/getResourceInfoButton"
-        style="@style/CustomButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/get_resource_info"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/startSessionButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/endSessionButton"
-        app:layout_constraintTop_toTopOf="@+id/startSessionButton" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/releaseSessionButton"
-        style="@style/CustomButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/release_session"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/playbackTokenTextInputView" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/sessionRecyclerView"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/releaseSessionButton"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startSessionButton" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/startSessionButton"
-        style="@style/CustomButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/start_session"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/endSessionButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playbackTokenTextInputView" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_graph" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

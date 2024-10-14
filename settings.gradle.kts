@@ -21,7 +21,7 @@ dependencyResolutionManagement {
         mavenCentral()
         //add below
         maven {
-            url = uri("https://maven.pkg.github.com/blendvision/Android-Playback-Link-SDK")
+            url = uri("https://maven.pkg.github.com/blendvision/Android-Packages")
             credentials {
                 val properties = getLocalProperties()
                 username = properties.getProperty("github.packages.user")
