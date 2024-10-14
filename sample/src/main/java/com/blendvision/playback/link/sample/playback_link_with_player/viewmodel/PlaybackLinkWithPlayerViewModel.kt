@@ -52,8 +52,6 @@ class PlaybackLinkWithPlayerViewModel(
                 PlaybackState.READY -> {
                     if (playWhenReady) {
                         bvPlaybackLinker.startSession()
-                    } else {
-                        bvPlaybackLinker.endSession()
                     }
                 }
 
