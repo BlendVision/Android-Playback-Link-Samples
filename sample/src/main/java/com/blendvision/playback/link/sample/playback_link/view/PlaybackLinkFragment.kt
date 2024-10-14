@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blendvision.playback.link.core.presentation.BVPlaybackLink
 import com.blendvision.playback.link.sample.common.adapter.SessionAdapter
@@ -72,22 +74,29 @@ class PlaybackLinkFragment : Fragment() {
 
     private fun observeViewModel() {
         lifecycleScope.launch {
-            viewModel.sessionList.collectLatest { sessionList ->
-                sessionAdapter.submitList(sessionList) {
-                    binding.sessionRecyclerView.smoothScrollToPosition(sessionAdapter.itemCount)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.onSession.collectLatest { sessionList ->
+                    sessionAdapter.submitList(sessionList) {
+                        binding.sessionRecyclerView.smoothScrollToPosition(sessionAdapter.itemCount)
+                    }
                 }
             }
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.startSession()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.endSession()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.endSession()
         viewModel.release()
     }
 }

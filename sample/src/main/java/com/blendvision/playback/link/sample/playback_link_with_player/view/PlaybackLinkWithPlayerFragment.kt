@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blendvision.playback.link.core.presentation.BVPlaybackLink
 import com.blendvision.playback.link.sample.R
@@ -27,12 +29,10 @@ class PlaybackLinkWithPlayerFragment : Fragment() {
     private var _binding: FragmentPlaybackLinkWithPlayerBinding? = null
     private val binding get() = _binding!!
 
-    private val bvPlaybackLinker: BVPlaybackLink by lazy {
-        BVPlaybackLink.Builder(requireContext()).enableDebugMode(false).build()
-    }
-
     private val viewModel: PlaybackLinkWithPlayerViewModel by viewModels {
-        PlaybackLinkWithPlayerViewModelFactory(bvPlaybackLinker)
+        PlaybackLinkWithPlayerViewModelFactory(
+            BVPlaybackLink.Builder(requireContext()).enableDebugMode(false).build()
+        )
     }
 
     private val sessionAdapter by lazy { SessionAdapter(SessionItemDiffCallback()) }
@@ -89,26 +89,30 @@ class PlaybackLinkWithPlayerFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+
         lifecycleScope.launch {
-            viewModel.sessionList.collectLatest { sessionList ->
-                sessionAdapter.submitList(sessionList) {
-                    binding.sessionRecyclerView.smoothScrollToPosition(sessionAdapter.itemCount)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.onSession.collectLatest { sessionList ->
+                    sessionAdapter.submitList(sessionList) {
+                        binding.sessionRecyclerView.smoothScrollToPosition(sessionAdapter.itemCount)
+                    }
                 }
             }
         }
 
         lifecycleScope.launch {
-            viewModel.toastMessage.collectLatest { message ->
-                message?.let {
-                    Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.toastMessage.collectLatest { message ->
+                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                 }
             }
         }
 
         lifecycleScope.launch {
-            viewModel.onPlayerInit.collectLatest { isInit ->
-                if (!isInit) return@collectLatest
-                configurePlayer()
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.onPlayerInit.collectLatest { isInit ->
+                    if (isInit) configurePlayer()
+                }
             }
         }
     }
@@ -125,15 +129,21 @@ class PlaybackLinkWithPlayerFragment : Fragment() {
         binding.playerView.setUnifiedPlayer(viewModel.getPlayer())
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.startPlayer()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.stopPlayer()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.stopPlayer()
         viewModel.release()
     }
 }
+
 

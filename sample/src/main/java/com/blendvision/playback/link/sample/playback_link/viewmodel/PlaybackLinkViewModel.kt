@@ -6,15 +6,16 @@ import com.blendvision.playback.link.common.presentation.entity.BVPlaybackLinkSt
 import com.blendvision.playback.link.core.presentation.BVPlaybackLink
 import com.blendvision.playback.link.sample.common.adapter.SessionItem
 import com.blendvision.playback.link.sample.main.PlaybackConstants
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import java.util.UUID
 
 class PlaybackLinkViewModel(private val bvPlaybackLinker: BVPlaybackLink) : ViewModel() {
 
-    private val _sessionList = MutableStateFlow<List<SessionItem>>(emptyList())
-    val sessionList: StateFlow<List<SessionItem>> = _sessionList
+    private val sessionList = mutableListOf<SessionItem>()
+    private val _onSession = MutableSharedFlow<List<SessionItem>>()
+    val onSession: SharedFlow<List<SessionItem>> = _onSession
 
     init {
         viewModelScope.launch {
@@ -63,9 +64,10 @@ class PlaybackLinkViewModel(private val bvPlaybackLinker: BVPlaybackLink) : View
         }
     }
 
-    private fun logSession(message: String) {
+    private suspend fun logSession(message: String) {
         val newItem = SessionItem(UUID.randomUUID().toString(), message)
-        _sessionList.value += newItem
+        sessionList.add(newItem)
+        _onSession.emit(sessionList.toList())
     }
 
     private suspend fun observePlaybackLinkEvents() {
