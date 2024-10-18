@@ -66,6 +66,16 @@
                 android:text="@string/get_resource_info"
                 android:textSize="16sp" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/getPlaybackSessionInfoButton"
+                style="@style/CustomButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:text="@string/get_playback_session_info"
+                android:textSize="16sp" />
+
         </LinearLayout>
     </HorizontalScrollView>
 

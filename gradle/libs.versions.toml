@@ -14,8 +14,7 @@ navigation-fragment-ktx = "2.8.2"
 navigation-ui-ktx = "2.8.2"
 coroutines = "1.9.0"
 lifecycle-viewmodel-ktx = "2.8.6"
-bvplaybacklink = "1.0.0"
-player = "5.4.0-SNAPSHOT-20241009-001"
+bvplaybacklink = "1.1.0-SNAPSHOT-20241018-001"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -32,11 +31,6 @@ navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx",
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx" }
 bv-playbacklink = { group = "com.blendvision.playback.link", name = "bvplaybacklink", version.ref = "bvplaybacklink" }
-bv-playback = { group = "com.blendvision.player", name = "playback", version.ref = "player" }
-bv-download = { group = "com.blendvision.player", name = "download", version.ref = "player" }
-bv-analytics = { group = "com.blendvision.player", name = "analytics", version.ref = "player" }
-bv-common = { group = "com.blendvision.player", name = "common", version.ref = "player" }
-
 
 # Dependencies of the include build-logic
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -46,6 +40,4 @@ kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-p
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
-[bundles]
-bv-player = ["bv-playback", "bv-download", "bv-analytics", "bv-common"]
 
