@@ -58,6 +58,13 @@ class PlaybackLinkViewModel(private val bvPlaybackLinker: BVPlaybackLink) : View
         }
     }
 
+    fun getPlaybackSessionInfo() {
+        viewModelScope.launch {
+            val playbackSessionInfo = bvPlaybackLinker.getPlaybackSessionInfo()
+            logSession("Playback session info: $playbackSessionInfo")
+        }
+    }
+
     fun release() {
         viewModelScope.launch {
             bvPlaybackLinker.release()
@@ -75,6 +82,7 @@ class PlaybackLinkViewModel(private val bvPlaybackLinker: BVPlaybackLink) : View
             val message = when (state) {
                 is BVPlaybackLinkState.GetResourceInfoSuccess -> PlaybackConstants.GET_RESOURCE_INFO_SUCCESS
                 is BVPlaybackLinkState.StartPlaybackSessionSuccess -> PlaybackConstants.START_PLAYBACK_SESSION_SUCCESS
+                is BVPlaybackLinkState.GetPlaybackSessionInfoSuccess -> PlaybackConstants.GET_PLAYBACK_SESSION_INFO_SUCCESS
                 is BVPlaybackLinkState.StartHeartbeatSuccess -> PlaybackConstants.START_HEARTBEAT_SUCCESS
                 is BVPlaybackLinkState.EndPlaybackSessionSuccess -> PlaybackConstants.END_PLAYBACK_SESSION_SUCCESS
                 is BVPlaybackLinkState.Failure -> state.bvPlaybackLinkError.message

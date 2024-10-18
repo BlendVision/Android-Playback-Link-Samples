@@ -11,7 +11,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.blendvision.playback.link.core.presentation.BVPlaybackLink
 import com.blendvision.playback.link.sample.R
 import com.blendvision.playback.link.sample.common.adapter.SessionAdapter
 import com.blendvision.playback.link.sample.common.adapter.SessionItemDiffCallback
@@ -30,18 +29,11 @@ class PlaybackLinkWithPlayerFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: PlaybackLinkWithPlayerViewModel by viewModels {
-        PlaybackLinkWithPlayerViewModelFactory(
-            BVPlaybackLink.Builder(requireContext()).enableDebugMode(false).build()
-        )
+        PlaybackLinkWithPlayerViewModelFactory()
     }
 
     private val sessionAdapter by lazy { SessionAdapter(SessionItemDiffCallback()) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val playbackToken = arguments?.getString(PlaybackConstants.PLAYBACK_TOKEN_KEY) ?: ""
-        viewModel.updatePlaybackToken(playbackToken)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +45,7 @@ class PlaybackLinkWithPlayerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.initBVPlayback(context = requireContext(), viewLifecycleOwner.lifecycle)
         setupViews()
         setupRecyclerView()
         setupClickListeners()
@@ -76,20 +69,15 @@ class PlaybackLinkWithPlayerFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
-        binding.initPlayerButton.setOnClickListener {
-            val licenseKey = binding.licenseKeyInputEditText.text.toString()
-            viewModel.initPlayer(requireContext(), licenseKey)
-        }
         binding.loadPlayerButton.setOnClickListener {
+            val playbackToken = "${PlaybackConstants.PRE_FIX}${arguments?.getString(PlaybackConstants.PLAYBACK_TOKEN_KEY) ?: ""}"
+            val licenseKey = binding.licenseKeyInputEditText.text.toString()
             val mpdUrl = binding.mpdUrlInputEditText.text.toString()
-            viewModel.loadPlayer(mpdUrl)
+            viewModel.loadPlayer(playbackToken = playbackToken, licenseKey = licenseKey, mpdUrl = mpdUrl)
         }
-        binding.startPlayerButton.setOnClickListener { viewModel.startPlayer() }
-        binding.stopPlayerButton.setOnClickListener { viewModel.stopPlayer() }
     }
 
     private fun observeViewModel() {
-
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.onSession.collectLatest { sessionList ->
@@ -115,6 +103,7 @@ class PlaybackLinkWithPlayerFragment : Fragment() {
                 }
             }
         }
+
     }
 
     private fun configurePlayer() {
@@ -129,21 +118,11 @@ class PlaybackLinkWithPlayerFragment : Fragment() {
         binding.playerView.setUnifiedPlayer(viewModel.getPlayer())
     }
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.startPlayer()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        viewModel.stopPlayer()
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        viewModel.release()
     }
+
 }
 
 

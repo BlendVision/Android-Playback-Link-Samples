@@ -10,7 +10,6 @@ android {
 dependencies {
 
     implementation(libs.bv.playbacklink)
-    implementation(libs.bundles.bv.player)
 
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
