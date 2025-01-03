@@ -62,6 +62,7 @@ class PlaybackLinkFragment : Fragment() {
             startSessionButton.setOnClickListener { viewModel.startSession() }
             endSessionButton.setOnClickListener { viewModel.endSession() }
             getResourceInfoButton.setOnClickListener { viewModel.getResourceInfo() }
+            getPlaybackSessionInfoButton.setOnClickListener { viewModel.getPlaybackSessionInfo() }
         }
     }
 

@@ -15,76 +15,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:overScrollMode="never"
-        android:scrollbarSize="2dp"
-        android:scrollbarStyle="outsideInset"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loadPlayerButton"
+        style="@style/CustomButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:text="@string/load_player"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/licenseKeyTextInputView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerView">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/initPlayerButton"
-                style="@style/CustomButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="1"
-                android:text="@string/init_player"
-                android:textSize="16sp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/loadPlayerButton"
-                style="@style/CustomButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="1"
-                android:text="@string/load_player"
-                android:textSize="16sp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/startPlayerButton"
-                style="@style/CustomButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="1"
-                android:text="@string/start_player"
-                android:textSize="16sp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/stopPlayerButton"
-                style="@style/CustomButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:text="@string/stop_player"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-    </HorizontalScrollView>
+        app:layout_constraintTop_toBottomOf="@+id/playerView" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/licenseKeyTextInputView"
@@ -92,13 +38,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toTopOf="@+id/mpdUrlTextInputView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2">
+        app:layout_constraintTop_toBottomOf="@+id/loadPlayerButton">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/licenseKeyInputEditText"
