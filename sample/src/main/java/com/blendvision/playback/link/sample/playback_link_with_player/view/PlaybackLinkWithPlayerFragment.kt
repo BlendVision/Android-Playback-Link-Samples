@@ -55,7 +55,6 @@ class PlaybackLinkWithPlayerFragment : Fragment() {
     private fun setupViews() {
         with(binding) {
             licenseKeyTextInputView.hint = getString(R.string.input_license_key)
-            mpdUrlTextInputView.hint = getString(R.string.input_mpd_url)
         }
     }
 
@@ -70,10 +69,9 @@ class PlaybackLinkWithPlayerFragment : Fragment() {
 
     private fun setupClickListeners() {
         binding.loadPlayerButton.setOnClickListener {
-            val playbackToken = "${PlaybackConstants.PRE_FIX}${arguments?.getString(PlaybackConstants.PLAYBACK_TOKEN_KEY) ?: ""}"
+            val playbackToken = arguments?.getString(PlaybackConstants.PLAYBACK_TOKEN_KEY) ?: ""
             val licenseKey = binding.licenseKeyInputEditText.text.toString()
-            val mpdUrl = binding.mpdUrlInputEditText.text.toString()
-            viewModel.loadPlayer(playbackToken = playbackToken, licenseKey = licenseKey, mpdUrl = mpdUrl)
+            viewModel.loadPlayer(playbackToken = playbackToken, licenseKey = licenseKey)
         }
     }
 

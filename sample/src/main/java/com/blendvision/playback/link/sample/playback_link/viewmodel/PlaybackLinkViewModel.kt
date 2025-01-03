@@ -25,7 +25,7 @@ class PlaybackLinkViewModel(private val bvPlaybackLinker: BVPlaybackLink) : View
 
     fun updatePlaybackToken(token: String) {
         viewModelScope.launch {
-            bvPlaybackLinker.updatePlaybackToken("${PlaybackConstants.PRE_FIX}$token")
+            bvPlaybackLinker.updatePlaybackToken(token)
             logSession("Updated playback token: ${bvPlaybackLinker.getCurrentPlaybackToken()}")
         }
     }

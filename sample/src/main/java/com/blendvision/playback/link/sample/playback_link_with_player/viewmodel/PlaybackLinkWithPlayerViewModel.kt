@@ -55,7 +55,7 @@ class PlaybackLinkWithPlayerViewModel : ViewModel() {
             .create(bvPlaybackStateListener)
     }
 
-    fun loadPlayer(playbackToken: String, mpdUrl: String, licenseKey: String) {
+    fun loadPlayer(playbackToken: String, licenseKey: String) {
         viewModelScope.launch {
             if (playbackToken.isEmpty()) {
                 sendToast("Please input playback token")
@@ -63,10 +63,6 @@ class PlaybackLinkWithPlayerViewModel : ViewModel() {
             }
             if (licenseKey.isEmpty()) {
                 sendToast("Please input license key")
-                return@launch
-            }
-            if (mpdUrl.isEmpty()) {
-                sendToast("Please input mpd url")
                 return@launch
             }
 
